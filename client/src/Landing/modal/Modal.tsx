@@ -1,48 +1,13 @@
-import { useState } from "react";
-import "./addNewUser.scss";
+import ".././addNewUser/addNewUser.scss";
 import useStore from "../../store/store";
 
 import { Modal, Button, Form, Input, Select } from "antd";
 
-interface User {
-  name: string;
-  email: string;
-  gender: string;
-  address: { street: string; city: string };
-  phone: string;
-}
-
-const UserModal: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const UserModal: React.FC = (props: any) => {
   const { users } = useStore();
 
-  const [newUser, setNewUser] = useState<User>({
-    name: "",
-    email: "",
-    gender: "",
-    address: { street: "", city: "" },
-    phone: "",
-  });
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
   const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const onFinish = (values: User) => {
-    console.log(values);
-    setNewUser({
-      name: values.name,
-      email: values.email,
-      gender: values.gender,
-      // @ts-ignore
-      address: { street: values.street, city: values.city },
-      phone: values.phone,
-    });
-
-    console.log(newUser);
+    props.setIsModalOpen(false);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -51,12 +16,9 @@ const UserModal: React.FC = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Add New User
-      </Button>
       <Modal
-        title="Add New User"
-        open={isModalOpen}
+        title={props.header}
+        open={props.isModalOpen}
         onCancel={handleCancel}
         className="modal"
         footer={null}
@@ -67,7 +29,7 @@ const UserModal: React.FC = () => {
           layout="horizontal"
           style={{ maxWidth: "500px" }}
           initialValues={{ remember: true }}
-          onFinish={onFinish}
+          onFinish={props!.onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
@@ -76,7 +38,10 @@ const UserModal: React.FC = () => {
             name="name"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
-            <Input value={newUser.name} />
+            <Input
+              value={props.newUser.name}
+              defaultValue={props.newUser.name}
+            />
           </Form.Item>
           <Form.Item
             label="Email"
@@ -98,14 +63,20 @@ const UserModal: React.FC = () => {
               },
             ]}
           >
-            <Input value={newUser.email} />
+            <Input
+              value={props.newUser.email}
+              defaultValue={props.newUser.email}
+            />
           </Form.Item>
           <Form.Item
             label="Gender"
             name="gender"
             rules={[{ required: true, message: "Please select gender!" }]}
           >
-            <Select value={newUser.gender}>
+            <Select
+              value={props.newUser.gender}
+              defaultValue={props.newUser.gender}
+            >
               <Select.Option value="Male">Male</Select.Option>
               <Select.Option value="Female">Female</Select.Option>
             </Select>
@@ -115,35 +86,45 @@ const UserModal: React.FC = () => {
             name="street"
             rules={[{ required: true, message: "Please input street!" }]}
           >
-            <Input value={newUser.address.street} />
+            <Input
+              value={props.newUser.address.street}
+              defaultValue={props.newUser.address.street}
+            />
           </Form.Item>
           <Form.Item
             label="City"
             name="city"
             rules={[{ required: true, message: "Please input city!" }]}
           >
-            <Input value={newUser.address.city} />
+            <Input
+              value={props.newUser.address.city}
+              defaultValue={props.newUser.address.city}
+            />
           </Form.Item>
 
           <Form.Item
             rules={[
               { required: true, message: "Please input your phone number!" },
               //   { pattern: /^[0-9]*$/, message: "Please enter only digits" },
-              {
-                min: 9,
-                max: 9,
-                message: "Please enter a valid 9-digit phone number",
-              },
+              // {
+              //   min: 9,
+              //   max: 9,
+              //   message: "Please enter a valid 9-digit phone number",
+              // },
             ]}
             name="phone"
             label="Phone"
           >
-            <Input type="number" />
+            <Input
+              type="string"
+              value={props.newUser.phone}
+              defaultValue={props.newUser.phone}
+            />
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              {props.buttonTitle}
             </Button>
           </Form.Item>
         </Form>

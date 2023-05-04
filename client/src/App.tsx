@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import LandingPage from "./Landing/Landing";

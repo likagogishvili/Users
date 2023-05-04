@@ -17,8 +17,14 @@ function DeleteButton(props: { recordKey: number }) {
 
 const columns = [
   {
+    id: "index",
+    title: "Index",
+    dataIndex: "index",
+    key: "index",
+  },
+  {
     id: "id",
-    title: "id",
+    title: "user_id",
     dataIndex: "id",
     key: "id",
   },
