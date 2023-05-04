@@ -1,18 +1,15 @@
 import "./landing.scss";
-import Button from "@mui/material/Button";
 import useStore from "../store/store";
+import { Button } from "antd";
 
 function DeleteButton(props: { recordKey: number }) {
   const { setDeletedItem } = useStore();
   return (
     <Button
-      className={`delete`}
-      variant="outlined"
-      color="error"
+      danger
       onClick={() => {
         setDeletedItem(props.recordKey);
-      }}
-    >
+      }}>
       Delete
     </Button>
   );
