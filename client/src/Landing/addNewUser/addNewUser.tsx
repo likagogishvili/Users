@@ -2,15 +2,8 @@ import "./addNewUser.scss";
 import { useState } from "react";
 import UserModal from "../modal/Modal";
 import axios from "axios";
-import { Button} from "antd";
-
-interface User {
-  name: string;
-  email: string;
-  gender: string;
-  address: { street: string; city: string };
-  phone: string;
-}
+import { Button } from "antd";
+import { User } from "../../types/types";
 
 function AddNewUser(props: any) {
   const [newUser, setNewUser] = useState<User>({
@@ -50,7 +43,7 @@ function AddNewUser(props: any) {
       .then(function (response: any) {
         props.setUpdateUserData(!props.updateUserData);
         alert("User Added");
-        setIsModalOpen(false)
+        setIsModalOpen(false);
       })
       .catch(function (error: object) {
         console.log(error);
@@ -58,7 +51,7 @@ function AddNewUser(props: any) {
   };
   return (
     <div className="newUserCont">
-     <Button type="primary" onClick={showModal}>
+      <Button type="primary" onClick={showModal}>
         Add New User
       </Button>
       <UserModal
@@ -67,8 +60,9 @@ function AddNewUser(props: any) {
         newUser={newUser}
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}
-        header = "Add User"
-        buttonTitle = "Submit"
+        header="Add User"
+        buttonTitle="Submit"
+        setUser={setNewUser}
       />
     </div>
   );

@@ -33,7 +33,7 @@ function LandingPage() {
   useEffect(() => {
     if (deletedItem !== 0) {
       axios
-        .post("http://localhost:3001/deleteRecord", {
+        .post("http://localhost:3001/deleteUser", {
           id: deletedItem,
         })
         .then(function (response: any) {
@@ -61,7 +61,11 @@ function LandingPage() {
         setUpdateUserData={setUpdateUserData}
         updateUserData={updateUserData}
       />
-      <UpdateUser clickedcolumn={clickedcolumn} />
+      <UpdateUser
+        clickedcolumn={clickedcolumn}
+        setUpdateUserData={setUpdateUserData}
+        setClickedColumn={setClickedColumn}
+      />
       <Table
         dataSource={users}
         columns={columns}

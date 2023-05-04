@@ -1,15 +1,5 @@
-import {create} from "zustand";
-interface Users {
-  id: number;
-  name: string;
-  email: string;
-  gender: string;
-  adress: {
-    street: string;
-    city: string;
-  };
-  phone: string;
-}
+import { create } from "zustand";
+import { Users } from "../types/types";
 
 type Store = {
   users: Users[];

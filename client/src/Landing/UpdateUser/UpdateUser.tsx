@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import UserModal from "../modal/Modal";
 import useStore from "../../store/store";
-
-interface User {
-  name: string;
-  email: string;
-  gender: string;
-  address: { street: string; city: string };
-  phone: string;
-}
+import axios from "axios";
+import { User } from "../../types/types";
 
 function UpdateUser(props: any) {
   const { users } = useStore();
@@ -23,7 +17,7 @@ function UpdateUser(props: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if (isModalOpen === false && props.clickedcolumn) {
+    if (props.clickedcolumn) {
       let clickedUserData = users.filter(
         (user: any) => user.id === props.clickedcolumn
       )[0];
@@ -43,39 +37,40 @@ function UpdateUser(props: any) {
       }
       setIsModalOpen(true);
     }
+    // eslint-disable-next-line
   }, [props.clickedcolumn]);
 
   const onFinish = (values: User) => {
-    console.log("here");
-    // setNewUser({
-    //   name: values.name,
-    //   email: values.email,
-    //   gender: values.gender,
-    //   // @ts-ignore
-    //   address: { street: values.street, city: values.city },
-    //   phone: values.phone,
-    // });
-    // let newUserForPost = {
-    //   name: values.name,
-    //   email: values.email,
-    //   gender: values.gender,
-    //   // @ts-ignore
-    //   address: { street: values.street, city: values.city },
-    //   phone: values.phone,
-    // };
+    setUser({
+      name: values.name,
+      email: values.email,
+      gender: values.gender,
+      // @ts-ignore
+      address: { street: values.street, city: values.city },
+      phone: values.phone,
+    });
+    let UpdatedUserForPost = {
+      id: props.clickedcolumn,
+      name: values.name,
+      email: values.email,
+      gender: values.gender,
+      // @ts-ignore
+      address: { street: values.street, city: values.city },
+      phone: values.phone,
+    };
 
-    // axios
-    //   .post("http://localhost:3001/addUser", {
-    //     newUser: newUserForPost,
-    //   })
-    //   .then(function (response: any) {
-    //     props.setUpdateUserData(!props.updateUserData);
-    //     alert("User Added");
-    //     setIsModalOpen(false);
-    //   })
-    //   .catch(function (error: object) {
-    //     console.log(error);
-    //   });
+    axios
+      .post("http://localhost:3001/updateUser", {
+        newUser: UpdatedUserForPost,
+      })
+      .then(function (response: any) {
+        props.setUpdateUserData(!props.updateUserData);
+        alert("User Updated");
+        setIsModalOpen(false);
+      })
+      .catch(function (error: object) {
+        console.log(error, "err");
+      });
   };
   return (
     <UserModal
@@ -86,6 +81,7 @@ function UpdateUser(props: any) {
       isModalOpen={isModalOpen}
       header="Update User"
       buttonTitle="Update"
+      setUser={setUser}
     />
   );
 }
