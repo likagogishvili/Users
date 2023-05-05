@@ -90,8 +90,8 @@ const UserModal = (props: any) => {
           rules={[{ required: true, message: "Please select gender!" }]}
         >
           <Select>
-            <Select.Option value="Male">Male</Select.Option>
-            <Select.Option value="Female">Female</Select.Option>
+            <Select.Option value="male">Male</Select.Option>
+            <Select.Option value="female">Female</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item

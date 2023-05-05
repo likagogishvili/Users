@@ -53,8 +53,7 @@ function LandingPage() {
       setClickedColumn(clickedColumn);
     }
   }
-
-  // console.log(clickedcolumn)
+  console.log(updateUserData);
   return (
     <div className="tableDiv">
       <AddNewUser
@@ -64,6 +63,7 @@ function LandingPage() {
       <UpdateUser
         clickedcolumn={clickedcolumn}
         setUpdateUserData={setUpdateUserData}
+        updateUserData={updateUserData}
         setClickedColumn={setClickedColumn}
       />
       <Table

@@ -23,12 +23,17 @@ function ChartPage() {
     label: {
       type: "inner",
       offset: "-30%",
+      content: ({ percent }: { percent: number }) =>
+        `${(percent * 100).toFixed(0)}%`,
       style: {
         fontSize: 16,
         textAlign: "center",
       },
     },
     interactions: [
+      {
+        type: "pie-legend-active",
+      },
       {
         type: "element-active",
       },

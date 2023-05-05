@@ -35,11 +35,9 @@ export default function Footer() {
           <a className="link-1" href="/">
             Home
           </a>
-
-          <a href="/">Chart Page</a>
+          <a href="/chart">Chart Page</a>
         </p>
-
-        <p>Company Name &copy; 2015</p>
+        <p>Company Name &copy; 2023</p>
       </div>
     </footer>
   );

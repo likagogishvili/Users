@@ -8,8 +8,10 @@ router.get("/chartData", async (req, res) => {
     const users = await GetUsers();
     const cities = {};
     users.forEach((user) => {
-      const city = user.address.city;
-      cities[city] = cities[city] ? cities[city] + 1 : 1;
+      if (user.address) {
+        const city = user.address.city;
+        cities[city] = cities[city] ? cities[city] + 1 : 1;
+      }
     });
     const total = users.length;
     const data = Object.entries(cities).map(([city, count]) => ({
