@@ -63,7 +63,7 @@ function UpdateUser(props: any) {
       .post("http://localhost:3001/updateUser", {
         newUser: UpdatedUserForPost,
       })
-      .then(function (response: any) {
+      .then(function () {
         props.setUpdateUserData(!props.updateUserData);
         alert("User Updated");
         setIsModalOpen(false);
@@ -74,7 +74,6 @@ function UpdateUser(props: any) {
   };
   return (
     <UserModal
-      /* @ts-ignore */
       onFinish={onFinish}
       newUser={updatedUser}
       setIsModalOpen={setIsModalOpen}

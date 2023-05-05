@@ -40,7 +40,7 @@ function AddNewUser(props: any) {
       .post("http://localhost:3001/addUser", {
         newUser: newUserForPost,
       })
-      .then(function (response: any) {
+      .then(function () {
         props.setUpdateUserData(!props.updateUserData);
         alert("User Added");
         setIsModalOpen(false);

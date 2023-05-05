@@ -9,7 +9,8 @@ function DeleteButton(props: { recordKey: number }) {
       danger
       onClick={() => {
         setDeletedItem(props.recordKey);
-      }}>
+      }}
+    >
       Delete
     </Button>
   );

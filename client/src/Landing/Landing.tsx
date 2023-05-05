@@ -36,9 +36,8 @@ function LandingPage() {
         .post("http://localhost:3001/deleteUser", {
           id: deletedItem,
         })
-        .then(function (response: any) {
+        .then(function () {
           setUpdateUserData(!updateUserData);
-          console.log(response);
         })
         .catch(function (error: object) {
           console.log(error);
@@ -53,7 +52,6 @@ function LandingPage() {
       setClickedColumn(clickedColumn);
     }
   }
-  console.log(updateUserData);
   return (
     <div className="tableDiv">
       <AddNewUser

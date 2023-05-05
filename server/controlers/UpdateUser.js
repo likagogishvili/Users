@@ -5,14 +5,13 @@ exports.updatedUser = async (req, res, next) => {
     const updatedUser = req.body.newUser;
     const usersJson = await fs.readFile(path);
     const users = JSON.parse(usersJson);
-
     // find the user to update
     const userToUpdate = users.find((user) => user.id === updatedUser.id);
     //update old values with new ones
     Object.assign(userToUpdate, updatedUser);
     await fs.writeFile(path, JSON.stringify(users));
     res.status(200).json({
-      message: "User updated successfully"
+      message: "User updated successfully",
     });
   } catch (err) {
     console.error(err);
