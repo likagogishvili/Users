@@ -17,4 +17,9 @@ interface Users {
   };
   phone: string;
 }
-export type { User, Users };
+
+interface CityData {
+  city: String;
+  percentage: Number;
+}
+export type { User, Users, CityData };

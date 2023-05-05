@@ -55,7 +55,6 @@ function AddNewUser(props: any) {
         Add New User
       </Button>
       <UserModal
-        /* @ts-ignore */
         onFinish={onFinish}
         newUser={newUser}
         setIsModalOpen={setIsModalOpen}

@@ -1,0 +1,13 @@
+.chartCont {
+  width: 50%;
+  margin: auto;
+  min-height: 80vh;
+  h2 {
+    text-align: center;
+    color: #292c2f;
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
